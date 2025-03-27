@@ -3,28 +3,28 @@
 # [8, 9, 4]
 # [7, 6, 5]
 # (0, 0) -> (0, 1) -> (0, 2) -> (1, 2) -> (2, 2) -> (3, 2) -> ...
-# 定义‘右下左上’四个方位，默认从这个方向开始，循环
+# 定义‘右下左上’四个方位，如果遇到边界或不为0的元素就更改方向
+
 n = 3
-directions = [(0, 1), (1, 0), (-1, 0), (0, -1)]
 matrix = [[0] * n for _ in range(n)]
+direction = [[0,1], [1,0], [0, -1],[-1,0]]
+p, q = 0, 0  # 控制矩阵下标
+d = 0  # 控制方向
 
-i, j = 0, 0  # 默认索引
-for idx in range(1, n ** 2 + 1):
-    matrix[i, j] = idx
-    if matrix[i , j + 1]: 
-        i += directions[0][0]
-        j += directions[0][1]
-    elif matrix[i + 1 , j]: 
-        i += directions[1][0]
-        j += directions[1][1]
-    elif matrix[i , j - 1]: 
-        i += directions[2][0]
-        j += directions[2][1]
-    else: 
-        i += directions[3][0]
-        j += directions[3][1]
+for num in range(1, n**2 + 1):
+    matrix[p][q] = num
 
-print(matrix)
+    # 存放下一步走的位置，防止越界
+    a = p + direction[d][0]
+    b = q + direction[d][1]
 
-    
+    # 碰到边界或不为0，改变方向
+    if  (a >= n or  a < 0 or b >= n or b < 0) or matrix[a][b] != 0:
+        d = (d + 1) % 4
 
+    p += direction[d][0]
+    q += direction[d][1]
+
+
+for i in matrix:
+    print(i)
