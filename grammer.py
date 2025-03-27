@@ -14,5 +14,3 @@ input = lambda: sys.stdin.readline().strip()
 n = 3
 zero_matrix = [[0] * n  for _ in range(n) ]
 print(zero_matrix)
-
-
