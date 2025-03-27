@@ -1,6 +1,6 @@
 # 快读模板，可提高读入数据效率
 import sys
-input = lambda: sys.stdin.readline().strip()
+input = lambda: sys.stdin.readline().strip()  # noqa: E731
 
 # 常见输入格式
 # 0.多行单个
